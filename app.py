@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     port = os.getenv("HTTP_PORT")
     if port is None:
-        port = "8081"
+        port = "8080"
 
     web.start(port)
 
