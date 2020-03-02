@@ -22,9 +22,22 @@ class HealthHandler(tornado.web.RequestHandler):
     def write_error(self, status_code, exc_info=None, **kwargs):
         self.finish({"error": self._reason})
 
-def start(port: int):
+class RemoteHandler(tornado.web.RequestHandler):
+    def initialize(self, remote):
+        self.remote = remote
+
+    def get(self):
+        entry = {
+            "operation": True,
+            "mode": "d"
+        }
+        self.remote.send(entry)
+
+
+def start(port: int, remote):
     web = tornado.web.Application([
         (r"/api/v1/health", HealthHandler),
+        (r"/api/v1/remote", RemoteHandler, dict(remote=remote))
     ], default_handler_class=DefaultHandler)
 
     web.listen(port)

@@ -11,18 +11,18 @@ signal = np.array([
 def generate(e):
     if not e['operation']:
         signal[0:, 7:] = [0x03, 0xFC, 0xC2, 0x3D]
-
-    if e['mode'] == "full":
-        signal[0:, 7:] = [0x02, 0xFD, 0xC2, 0x3D]
-    elif e['mode'] == "nightlight":
-        signal[0:, 7:] = [0x09, 0xF6, 0xC2, 0x3D]
-    elif e['mode'] == "a":
-        signal[0:, 7:] = [0x0A, 0xF5, 0xF2, 0x0D]
-    elif e['mode'] == "b":
-        signal[0:, 7:] = [0x09, 0xF6, 0xF2, 0x0D]
-    elif e['mode'] == "c":
-        signal[0:, 7:] = [0x08, 0xF7, 0xF2, 0x0D]
-    elif e['mode'] == "d":
-        signal[0:, 7:] = [0x07, 0xF8, 0xF2, 0x0D]
+    else:
+        if e['mode'] == "full":
+            signal[0:, 7:] = [0x02, 0xFD, 0xC2, 0x3D]
+        elif e['mode'] == "nightlight":
+            signal[0:, 7:] = [0x09, 0xF6, 0xC2, 0x3D]
+        elif e['mode'] == "a":
+            signal[0:, 7:] = [0x0A, 0xF5, 0xF2, 0x0D]
+        elif e['mode'] == "b":
+            signal[0:, 7:] = [0x09, 0xF6, 0xF2, 0x0D]
+        elif e['mode'] == "c":
+            signal[0:, 7:] = [0x08, 0xF7, 0xF2, 0x0D]
+        elif e['mode'] == "d":
+            signal[0:, 7:] = [0x07, 0xF8, 0xF2, 0x0D]
 
     return signal

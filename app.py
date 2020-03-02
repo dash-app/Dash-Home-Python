@@ -5,6 +5,8 @@ import os
 import web
 import logging
 
+from remote import remote
+
 # Logging
 LOG_LEVEL = logging.INFO
 if os.getenv("DEBUG", "") != "":
@@ -23,5 +25,7 @@ if __name__ == '__main__':
     if port is None:
         port = "8080"
 
-    web.start(port)
+    r = remote.Remote("light", "hitachi", "ir-a03h")
+
+    web.start(port, r)
 
